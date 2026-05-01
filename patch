@@ -1,0 +1,42 @@
+12c12
+< #include <linux/debugfs.h>
+---
+> //#include <linux/debugfs.h>
+15c15
+< #include "internal.h"
+---
+> #include <linux/miscdevice.h>
+21c21
+< static bool write_support;
+---
+> static bool write_support=1;
+28c28
+< static struct dentry *acpi_ec_debugfs_dir;
+---
+> //static struct dentry *acpi_ec_debugfs_dir;
+110c110
+< static void acpi_ec_add_debugfs(struct acpi_ec *ec, unsigned int ec_device_count)
+---
+> /*static void acpi_ec_add_debugfs(struct acpi_ec *ec, unsigned int ec_device_count)
+129c129,135
+< }
+---
+> }*/
+> 
+> static struct miscdevice ec_device = {.minor = MISC_DYNAMIC_MINOR,
+>                                        .name = "ec_sys",
+>                                        .fops = &acpi_ec_io_ops,
+>                                        .mode = 0666};
+> 
+133c139
+< 	if (first_ec)
+---
+> 	/*if (first_ec)
+134a141,142
+> 	return 0;*/
+>     misc_register(&ec_device);
+140c148,149
+< 	debugfs_remove_recursive(acpi_ec_debugfs_dir);
+---
+> 	//debugfs_remove_recursive(acpi_ec_debugfs_dir);
+>     misc_deregister(&ec_device);
