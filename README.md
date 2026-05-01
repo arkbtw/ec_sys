@@ -1,6 +1,6 @@
 # EC\_SYS
 
-Patched version of ec\_sys kernel module for non-debug build.
+Patched version of ec\_sys kernel module for non-debug builds.
 
 # Installation
 
@@ -18,7 +18,7 @@ sudo make uninstall
 
 # Usage
 
-Enable fanboot on lenovo y520 laptop.
+An example python code to activate fanboost mode on lenovo y520 laptop.
 ```python
 with open("/dev/ec_sys","r+b") as f:
      f.seek(0xBD)
