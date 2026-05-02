@@ -10,7 +10,7 @@ install:
 	bash -c "modprobe ec_sys;echo ec_sys > /etc/modules-load.d/ec_sys.conf"
 
 uninstall:
-	bash -c "rmmod ec_sys; rm /etc/modules-load.d/ec_sys.conf"
+	bash -c "rmmod ec_sys; rm /etc/modules-load.d/ec_sys.conf" || :
 	dkms remove ec_sys/0.1.0 --force --all
 
 clean:
