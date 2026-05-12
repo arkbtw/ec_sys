@@ -1,7 +1,8 @@
 KDIR = /lib/modules/`uname -r`/build
+DKMS_KDIR = /lib/modules/$(KERNELRELEASE)/build
 
 kbuild:
-	make -C $(KDIR) M=`pwd` modules
+	make -C $(DKMS_KDIR) M=`pwd` modules
 
 install:
 	wget https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/plain/drivers/acpi/ec_sys.c?h=linux-6.19.y -O ec_sys.c
